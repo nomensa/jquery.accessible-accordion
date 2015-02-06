@@ -93,7 +93,58 @@ describe('accessible-accordion', function() {
         });
 
         describe('- createHandleKeyDown function', function() {
+            var triggerKeyDown = function (element, keyCode) {
+                /*
+                Keyboard trigger function
+                */
+                var inputEl = element,
+                    e = $.Event('keydown');
 
+                e.which = keyCode;
+                inputEl.trigger(e);
+            },
+            testElement3 = $(markUp),
+            replaceElements = function(oldEls, newEl) {
+
+                $.each(oldEls, function(i, old_element) {
+                    var new_element = $(newEl);
+
+                    // iterate over every attribute of the #some_id span element
+                    $.each(old_element.attributes, function(i, attr) {
+                        // set each attribute to the specific value
+                        new_element.attr(attr.name, attr.value);
+                    });
+
+                    // carry over the html content
+                    new_element.html($(old_element).html());
+                    // finally, swap the elements
+                    $(old_element).replaceWith(new_element);
+                });
+
+            };
+
+            describe('On left or up arrow press', function() {
+
+                testElement3.accAccordion();
+
+                it('Should focus on the previous trigger', function() {
+                    var panels,
+                        triggers,
+                        trigger;
+
+                    // focus on the third pane
+                    triggers = testElement3.find('.js-accordion_control');
+
+                    // To make sure focus events test properly
+                    replaceElements(triggers, '<button>');
+
+                    trigger = testElement3.find('.js-accordion_control--01');
+                    trigger.focus().is(':focus');
+                    triggerKeyDown(trigger, '37');
+                    console.log(trigger.prev().is(':focus'));
+
+                });
+            });
         });
 
         describe('- addHeadingsToPanels function', function() {
