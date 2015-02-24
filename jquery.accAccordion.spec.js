@@ -333,7 +333,7 @@ describe('accessible-accordion', function() {
         });
 
         it('should set the width of the panel from the "panelWidth" option', function() {
-            var widthFound = true,
+            var widthFound = false,
                 panel;
 
             testElement.accAccordion({
