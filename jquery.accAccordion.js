@@ -312,6 +312,12 @@
     /*
         Public method for closing the panel
     */
+
+        // Do not close when using activeControlHidden
+        if (this.options.activeControlHidden) {
+            return false;
+        }
+
         var activePanelClass = this.options.panelControlActiveClass,
             panelId = '#' + $(control).attr('aria-controls');
 
