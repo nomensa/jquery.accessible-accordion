@@ -40,11 +40,11 @@
         panelControlClass: 'js-accordion_control',
         // A class applied to the active panel control
         panelControlActiveClass: 'js-accordion_control--active',
-        // A class applied if the panel control is hidden. Only used when the activeControlHidden option is true
+        // A class applied if the panel control is hidden. Only used when the activeControlHidden & horizontal options are true
         panelControlHiddenClass: 'js-accordion_control--hidden',
         // Ids for panel controls should start with the following string
         panelControlId: 'js-accordion_control--',
-        // Class applied to panel titles. Only used when the activeControlHidden option is true
+        // Class applied to panel titles. Only used when the activeControlHidden & horizontal options are true
         panelTitleClass: 'js-accordion_panel-title',
         // The width of the panel in % for horizontal accordion
         panelWidth: 33

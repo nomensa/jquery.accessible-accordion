@@ -163,7 +163,7 @@ describe('accessible-accordion', function() {
 
     describe('- plugin options', function() {
 
-        it('should activate a given tab if "defaultTab is set"', function() {
+        it('should activate a given tab if "defaultPanel is set"', function() {
             testElement.accAccordion({
                 defaultPanel: 2
             });
@@ -181,6 +181,173 @@ describe('accessible-accordion', function() {
             });
 
             expect(testElement.hasClass('js-accordion--horizontal')).toBe(true);
+        });
+
+        it('should create a callback if "callbackCreate" is set', function() {
+            var flag = false;
+
+            testElement.accAccordion({
+                callbackCreate: function() {
+                    flag = true;
+                }
+            });
+
+            expect(flag).toBe(true);
+        });
+
+        it('should create a callback if "callbackDestroy" is set', function() {
+            var flag = false,
+                plugin;
+
+            testElement.accAccordion({
+                callbackDestroy: function() {
+                    flag = true;
+                }
+            });
+
+            plugin = testElement;
+
+            plugin.data('plugin_accAccordion').destroy();
+            expect(flag).toBe(true);
+        });
+
+        it('should set the container class to the "containerClass" option', function() {
+            testElement.accAccordion({
+                containerClass: 'foo'
+            });
+
+            expect(testElement.hasClass('foo')).toBe(true);
+        });
+
+        it('should set the container class of the "containerClassHorizontal" option', function() {
+            testElement.accAccordion({
+                horizontal: true,
+                containerClassHorizontal: 'foo'
+            });
+
+            expect(testElement.hasClass('foo')).toBe(true);
+        });
+
+        it('should create a horizontal accordion if that option is set', function() {
+            testElement.accAccordion({
+                horizontal: true
+            });
+
+            expect(testElement.hasClass('js-accordion--horizontal')).toBe(true);
+        });
+
+        it('should set the panel class from the "panelClass" option', function() {
+            testElement.accAccordion({
+                panelClass: 'foo'
+            });
+
+            expect(testElement.find('.js-accordion_control').next().hasClass('foo')).toBe(true);
+        });
+
+        it('should set the panelId prefix from the option "panelId"', function() {
+            var prefixFound = false,
+                panel;
+
+            testElement.accAccordion({
+                panelId: 'foo',
+            });
+
+            panel = testElement.find('.js-accordion_panel').first();
+
+            if (panel.attr('id').indexOf('foo') !== -1) {
+                prefixFound = true;
+            }
+
+            expect(prefixFound).toBe(true);
+        });
+
+        it('should set the panelControlClass from the option "panelControlClass"', function() {
+            var control;
+
+            testElement.accAccordion({
+                panelControlClass: 'foo'
+            });
+
+            control = testElement.find('.js-accordion_panel').first().prev();
+
+            expect(control.hasClass('foo')).toBe(true);
+        });
+
+        it('should set the panel active class from the option "panelControlActiveClass"', function() {
+            var control;
+
+            testElement.accAccordion({
+                defaultPanel: 2,
+                panelControlActiveClass: 'foo'
+            });
+
+            control = testElement.find('.js-accordion_control').eq(2);
+
+            expect(control.hasClass('foo')).toBe(true);
+        });
+
+        it('should set the panel hidden class from the option "panelControlHiddenClass"', function() {
+            var control;
+
+            testElement.accAccordion({
+                defaultPanel: 0,
+                activeControlHidden: true,
+                horizontal: true,
+                panelControlHiddenClass: 'foo'
+            });
+
+            control = testElement.find('.js-accordion_control--active');
+
+            expect(control.hasClass('foo')).toBe(true);
+        });
+
+        it('should set the prefix for the from the "panelControlId" option', function() {
+            var prefixFound = false,
+                control;
+
+            testElement.accAccordion({
+                panelControlId: 'foo',
+            });
+
+            control = testElement.find('.js-accordion_control').first();
+
+            if (control.attr('id').indexOf('foo') !== -1) {
+                prefixFound = true;
+            }
+
+            expect(prefixFound).toBe(true);
+        });
+
+        it('should set the panel title class from the option "panelTitleClass"', function() {
+            var title;
+
+            testElement.accAccordion({
+                horizontal: true,
+                activeControlHidden: true,
+                panelTitleClass: 'foo'
+            });
+
+            title = testElement.find('.js-accordion_panel').first().children().eq(0);
+
+            expect(title.hasClass('foo')).toBe(true);
+        });
+
+        it('should set the width of the panel from the "panelWidth" option', function() {
+            var widthFound = true,
+                panel;
+
+            testElement.accAccordion({
+                horizontal: true,
+                panelWidth: 5
+            });
+
+            panel = testElement.find('.js-accordion_panel').first();
+
+            if (panel.attr('style').indexOf('width: 5%') !== -1) {
+                widthFound = true;
+            }
+
+            expect(widthFound).toBe(true);
         });
     });
 });
