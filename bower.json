@@ -5,7 +5,7 @@
         "(Nomensa <tech@nomensa.com>)"
     ],
     "description": "Creates an accessible accordion - collapsible content panels",
-    "main": "jquery.accessible-accordion.js",
+    "main": "jquery.accAccordion.js",
     "keywords": [
         "accessible",
         "accordion",
