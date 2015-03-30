@@ -165,7 +165,3 @@ $ grunt --connect
 Copyright &copy; 2014 [@nomensa](http://nomensa.com)
 
 Licensed under [MIT](http://opensource.org/licenses/mit-license.php)
-
-## TODO
-
-- Finish Jasmine tests
