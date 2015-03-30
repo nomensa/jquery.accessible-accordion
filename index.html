@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--[if lte IE 7]> <html lang="en" dir="ltr" class="no-js lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" dir="ltr" class="no-js lte9 lte8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" dir="ltr" class="no-js lte9"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="en" dir="ltr" class="no-js supported"><!--<![endif]-->
+    <head>
+        <title>jQuery accessible accordion</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" media="screen" href="gh-pages/css/normalize.css" />
+        <link rel="stylesheet" media="screen" href="gh-pages/css/styles.css" />
+        <link rel="stylesheet" media="screen" href="gh-pages/css/demo.css" />
+        <link rel="stylesheet" media="screen" href="gh-pages/css/rainbow/github.css" />
+    </head>
+
+    <body>
+        <header class="header">
+            <p><a href="http://nomensa.com?plugin"><img src="gh-pages/img/nomensa-logo.png" alt="Nomensa humanising technology" width="135" height="38"/></a></p>
+        </header>
+
+        <div class="main" role="main">
+            <h1>jQuery accessible accordion</h1>
+            <p>Creates an accessible accordion - collapsible content panels.</p>
+
+
+            <h2>Example A</h2>
+            <p>With the default options.</p>
+            <div class="accordion example-a">
+                <h3>Tab 1</h3>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur <a href="#">adipiscing</a> elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper.</p>
+                </div>
+                <h3>Tab 2</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                    <p>Sed imperdiet, nibh ut vestibulum tempor, nibh dui volutpat lacus, vel gravida magna justo sit amet quam.</p>
+                </div>
+                <h3>Tab 3</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+                <h3>Tab 4</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar.</p>
+                </div>
+                <h3>Tab 5</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+            </div><!-- .accordion -->
+
+            <h3>Initialisation</h3>
+<pre>
+<code data-language="javascript">
+$(".example-a").accAccordion();
+</code>
+</pre>
+
+            <h2>Example B</h2>
+            <p>Open a panel by default.</p>
+            <div class="accordion example-b">
+                <h3>Tab 1</h3>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur <a href="#">adipiscing</a> elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper.</p>
+                </div>
+                <h3>Tab 2</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                    <p>Sed imperdiet, nibh ut vestibulum tempor, nibh dui volutpat lacus, vel gravida magna justo sit amet quam.</p>
+                </div>
+                <h3>Tab 3</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+                <h3>Tab 4</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar.</p>
+                </div>
+                <h3>Tab 5</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+            </div><!-- .accordion -->
+
+            <h3>Initialisation</h3>
+<pre>
+<code data-language="javascript">
+$(".example-b").accAccordion({
+    defaultPanel: 0
+});
+</code>
+</pre>
+
+            <h2>Example C</h2>
+            <p>Horizontal accordion.</p>
+            <div class="accordion example-c">
+                <h3>Tab 1</h3>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur <a href="#">adipiscing</a> elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper.</p>
+                </div>
+                <h3>Tab 2</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                    <p>Sed imperdiet, nibh ut vestibulum tempor, nibh dui volutpat lacus, vel gravida magna justo sit amet quam.</p>
+                </div>
+                <h3>Tab 3</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+                <h3>Tab 4</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar.</p>
+                </div>
+                <h3>Tab 5</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+            </div><!-- .accordion -->
+
+            <h3>Initialisation</h3>
+<pre>
+<code data-language="javascript">
+$(".example-c").accAccordion({
+    defaultPanel: 0,
+    horizontal: true
+});
+</code>
+</pre>
+
+            <h2>Example D</h2>
+            <p>Horizontal accordion with active control hidden.</p>
+            <div class="accordion example-d">
+                <h3>Tab 1</h3>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur <a href="#">adipiscing</a> elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper.</p>
+                </div>
+                <h3>Tab 2</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                    <p>Sed imperdiet, nibh ut vestibulum tempor, nibh dui volutpat lacus, vel gravida magna justo sit amet quam.</p>
+                </div>
+                <h3>Tab 3</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+                <h3>Tab 4</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar.</p>
+                </div>
+                <h3>Tab 5</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+            </div><!-- .accordion -->
+
+            <h3>Initialisation</h3>
+<pre>
+<code data-language="javascript">
+$(".example-d").accAccordion({
+    activeControlHidden: true,
+    defaultPanel: 0,
+    horizontal: true,
+    panelWidth: 50
+});
+</code>
+</pre>
+
+            <h2>Public methods</h2>
+            <div class="accordion example-e">
+                <h3>Tab 1</h3>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur <a href="#">adipiscing</a> elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper.</p>
+                </div>
+                <h3>Tab 2</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                    <div class="accordion example-f">
+                        <h3>Tab 1</h3>
+                        <div>
+                            <p>Lorem ipsum dolor sit amet, consectetur <a href="#">adipiscing</a> elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper.</p>
+                        </div>
+                        <h3>Tab 2</h3>
+                        <div>
+                            <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                            <p>Sed imperdiet, nibh ut vestibulum tempor, nibh dui volutpat lacus, vel gravida magna justo sit amet quam.</p>
+                        </div>
+                        <h3>Tab 3</h3>
+                        <div>
+                            <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                        </div>
+                        <h3>Tab 4</h3>
+                        <div>
+                            <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar.</p>
+                        </div>
+                        <h3>Tab 5</h3>
+                        <div>
+                            <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                        </div>
+                    </div><!-- .accordion -->
+                    <p>Sed imperdiet, nibh ut vestibulum tempor, nibh dui volutpat lacus, vel gravida magna justo sit amet quam.</p>
+                </div>
+                <h3>Tab 3</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+                <h3>Tab 4</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar.</p>
+                </div>
+                <h3>Tab 5</h3>
+                <div>
+                    <p>Ut laoreet augue et neque pretium non sagittis nibh pulvinar. Etiam ornare tincidunt orci quis ultrices. Pellentesque ac sapien ac purus gravida ullamcorper. Duis rhoncus sodales lacus, vitae adipiscing tellus pharetra sed. Praesent bibendum lacus quis metus condimentum ac accumsan orci vulputate. Aenean fringilla massa vitae metus facilisis congue. Morbi placerat eros ac sapien semper pulvinar. Vestibulum facilisis, ligula a molestie venenatis, metus justo ullamcorper ipsum, congue aliquet dolor tortor eu neque.</p>
+                </div>
+            </div><!-- .accordion -->
+        </div><!-- .main -->
+
+        <div class="footer">
+            <div>
+                <p><strong>jquery.accAccordion.js</strong> is licensed under the MIT License. <br />See the LICENSE.txt file in the <a href="https://github.com/nomensa/jquery.vertical-to-horizontal-accordion">source code</a> for copy permission.</p>
+            </div>
+        </div><!-- .footer -->
+
+        <script src="gh-pages/js/vendor/jquery/1.11.1/jquery.min.js"></script>
+        <script src="gh-pages/js/vendor/jquery-smartresize/jquery.debouncedresize.js"></script>
+        <script src="gh-pages/js/vendor/rainbow/rainbow.min.js"></script>
+        <script src="gh-pages/js/vendor/rainbow/language/generic.js"></script>
+        <script src="gh-pages/js/vendor/rainbow/language/javascript.js"></script>
+        <script src="jquery.accAccordion.js"></script>
+
+        <script>
+            // For demo purpose only
+            $(function() {
+                $('.example-a').accAccordion();
+
+                $(".example-b").accAccordion({
+                    defaultPanel: 0
+                });
+
+                $(".example-c").accAccordion({
+                    defaultPanel: 0,
+                    horizontal: true
+                });
+
+                $(".example-d").accAccordion({
+                    activeControlHidden: true,
+                    defaultPanel: 0,
+                    horizontal: true,
+                    panelWidth: 50
+                });
+
+                (function() {
+                    var target = $('.example-e'),
+                        buttonContainer = $('<div />'),
+                        buttonRebuild = $('<button class="js-btn">Rebuild</button>'),
+                        buttonDestroy = $('<button class="js-btn">Destroy</button>')
+                        targetInner = $('.example-f'),
+                        buttonContainerInner = $('<div />'),
+                        buttonRebuildInner = $('<button class="js-btn">Rebuild</button>'),
+                        buttonDestroyInner = $('<button class="js-btn">Destroy</button>');
+
+                    target.accAccordion({
+                        defaultPanel: 1
+                    });
+
+                    buttonRebuild.attr('disabled', 'disabled');
+
+                    buttonRebuild.on('click', function(event) {
+                        event.preventDefault();
+
+                        target.data('plugin_accAccordion').rebuild();
+
+                        $(this).attr('disabled', 'disabled');
+                        buttonDestroy.removeAttr('disabled');
+                    });
+
+                    buttonDestroy.on('click', function(event) {
+                        event.preventDefault();
+
+                        target.data('plugin_accAccordion').destroy();
+
+                        $(this).attr('disabled', 'disabled');
+                        buttonRebuild.removeAttr('disabled');
+                    });
+
+                    buttonContainer.append(buttonDestroy, buttonRebuild);
+                    target.after(buttonContainer);
+
+                    // Inner accordion
+                    targetInner.accAccordion({
+                        activeControlHidden: true,
+                        defaultPanel: 0,
+                        horizontal: true,
+                        panelWidth: 50
+                    });
+
+                    buttonRebuildInner.attr('disabled', 'disabled');
+
+                    buttonRebuildInner.on('click', function(event) {
+                        event.preventDefault();
+
+                        targetInner.data('plugin_accAccordion').rebuild();
+
+                        $(this).attr('disabled', 'disabled');
+                        buttonDestroyInner.removeAttr('disabled');
+                    });
+
+                    buttonDestroyInner.on('click', function(event) {
+                        event.preventDefault();
+
+                        targetInner.data('plugin_accAccordion').destroy();
+
+                        $(this).attr('disabled', 'disabled');
+                        buttonRebuildInner.removeAttr('disabled');
+                    });
+
+                    buttonContainerInner.append(buttonDestroyInner, buttonRebuildInner);
+                    targetInner.after(buttonContainerInner);
+
+                })();
+            });
+        </script>
+    </body>
+</html>

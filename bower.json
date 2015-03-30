@@ -1,0 +1,20 @@
+{
+    "name": "jquery.accessible-accordion",
+    "version": "0.1.0",
+    "authors": [
+        "(Nomensa <tech@nomensa.com>)"
+    ],
+    "description": "Creates an accessible accordion - collapsible content panels",
+    "main": "jquery.accAccordion.js",
+    "keywords": [
+        "accessible",
+        "accordion",
+        "jquery"
+    ],
+    "license": "MIT",
+    "homepage": "http://github.com/nomensa/jquery.accessible-accordion",
+    "dependencies": {
+        "jquery": "~1.11.1",
+        "jquery-smartresize": "*"
+    }
+}
