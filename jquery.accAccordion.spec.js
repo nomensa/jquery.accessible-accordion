@@ -261,6 +261,19 @@ describe('accessible-accordion', function() {
             expect(prefixFound).toBe(true);
         });
 
+        it('should set the panel active class from the option "panelActiveClass"', function() {
+            var activePanel;
+
+            testElement.accAccordion({
+                defaultPanel: 2,
+                panelActiveClass: 'foo'
+            });
+
+            activePanel = testElement.find('.js-accordion_panel').eq(2);
+
+            expect(activePanel.hasClass('foo')).toBe(true);
+        });
+
         it('should set the panelControlClass from the option "panelControlClass"', function() {
             var control;
 
@@ -273,7 +286,7 @@ describe('accessible-accordion', function() {
             expect(control.hasClass('foo')).toBe(true);
         });
 
-        it('should set the panel active class from the option "panelControlActiveClass"', function() {
+        it('should set the panel control active class from the option "panelControlActiveClass"', function() {
             var control;
 
             testElement.accAccordion({

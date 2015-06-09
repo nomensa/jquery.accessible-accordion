@@ -388,7 +388,8 @@
         $('> div', this.element).each(function(index, value) {
             $(value)
                 .removeAttr('aria-hidden aria-labelledby id style')
-                .removeClass(self.options.panelClass);
+                .removeClass(self.options.panelClass)
+                .removeClass(self.options.panelActiveClass);
         });
 
         // Remove any panel titles
