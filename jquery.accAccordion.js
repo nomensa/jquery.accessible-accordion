@@ -34,6 +34,8 @@
         horizontal: false,
         // Class to be applied to the panel
         panelClass: 'js-accordion_panel',
+        // A class applied to the active panel
+        panelActiveClass: 'js-accordion_panel--active',
         // Ids for panels should start with the following string
         panelId: 'js-accordion_panel--',
         // Class to apply to each panel control
@@ -47,7 +49,11 @@
         // Class applied to panel titles. Only used when the activeControlHidden & horizontal options are true
         panelTitleClass: 'js-accordion_panel-title',
         // The width of the panel in % for horizontal accordion
-        panelWidth: 33
+        panelWidth: 33,
+        // Should the page scroll to the top of the accordion when an element is opened/closed
+        scrollToControl: true,
+        // The speed at which the page should scroll when an element is opened/closed
+        scrollSpeed: 'fast'
     };
 
     function AccAccordion(element, options) {
@@ -254,13 +260,20 @@
         } else {
             this.close(control);
         }
+
+        if (this.options.scrollToControl) {
+            $('html, body').animate({
+                scrollTop: $(control).offset().top
+            }, this.options.scrollSpeed);
+        }
     };
 
     AccAccordion.prototype.open = function(control) {
     /*
         Public method for opening the panel
     */
-        var activePanelClass = this.options.panelControlActiveClass,
+        var activePanelControlClass = this.options.panelControlActiveClass,
+            activePanelClass = this.options.panelActiveClass,
             panelId = '#' + $(control).attr('aria-controls');
 
         // Reset state if another panel is open
@@ -270,21 +283,23 @@
                     'aria-expanded': 'false',
                     'aria-pressed': 'false'
                 })
-                .removeClass(activePanelClass);
+                .removeClass(activePanelControlClass);
 
             $('> [aria-hidden="false"]', this.element)
                 .attr('aria-hidden', 'true')
-                .hide();
+                .hide()
+                .removeClass(activePanelClass);
         }
 
         // Update state of newly selected panel
         $(panelId, this.element)
+            .addClass(activePanelClass)
             .attr('aria-hidden', 'false')
             .show();
 
         // Update state of newly selected panel control
         $(control, this.element)
-            .addClass(activePanelClass)
+            .addClass(activePanelControlClass)
             .attr({
                 'aria-expanded': 'true',
                 'aria-pressed': 'true'
@@ -306,6 +321,8 @@
             this.calculateWidths();
             this.calculateHeights();
         }
+
+
     };
 
     AccAccordion.prototype.close = function(control) {
@@ -318,13 +335,15 @@
             return false;
         }
 
-        var activePanelClass = this.options.panelControlActiveClass,
+        var activePanelControlClass = this.options.panelControlActiveClass,
+            activePanelClass = this.options.panelActiveClass,
             panelId = '#' + $(control).attr('aria-controls');
 
         // Update state of newly selected panel
         $(panelId, this.element)
             .attr('aria-hidden', 'true')
-            .hide();
+            .hide()
+            .removeClass(activePanelClass);
 
         // Update state of newly selected panel control
         $(control, this.element)
@@ -332,7 +351,7 @@
                 'aria-expanded': 'false',
                 'aria-pressed': 'false'
             })
-            .removeClass(activePanelClass);
+            .removeClass(activePanelControlClass);
     };
 
     AccAccordion.prototype.rebuild = function() {
