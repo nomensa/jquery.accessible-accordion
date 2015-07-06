@@ -349,5 +349,18 @@ describe('accessible-accordion', function() {
 
             expect(widthFound).toBe(true);
         });
+
+        describe('scrollToPanel option', function() {
+
+            it('should jump to the section of content', function() {
+                testElement.accAccordion({
+                    scrollToPanel: true
+                });
+
+                // Difficult to check if the viewport has scrolled to the right area in Jasmine
+            });
+
+            it('should animate when it scrolls');
+        });
     });
 });
