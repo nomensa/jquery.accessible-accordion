@@ -159,6 +159,16 @@ describe('accessible-accordion', function() {
 
     describe('- destroy method', function() {
 
+        it('should remove the plugin classes', function() {
+            testElement.accAccordion({
+                defaultPanel: 0,
+                panelActiveClass: 'foo'
+            });
+            testElement.data('plugin_accAccordion').destroy();
+
+            // The panel active class should be removed
+            expect(testElement.find('.js-accordion_panel:first').hasClass('foo')).toBe(false);
+        });
     });
 
     describe('- plugin options', function() {
@@ -273,7 +283,7 @@ describe('accessible-accordion', function() {
             expect(control.hasClass('foo')).toBe(true);
         });
 
-        it('should set the panel active class from the option "panelControlActiveClass"', function() {
+        it('should set the control active class from the option "panelControlActiveClass"', function() {
             var control;
 
             testElement.accAccordion({
@@ -285,6 +295,26 @@ describe('accessible-accordion', function() {
 
             expect(control.hasClass('foo')).toBe(true);
         });
+
+        describe('panel active class', function() {
+
+            beforeEach(function() {
+                testElement.accAccordion({
+                    defaultPanel: 0,
+                    panelActiveClass: 'foo'
+                });
+            });
+
+            it('should set the panel active class from the option "panelActiveClass"', function() {
+                var activePanel = testElement.find('.js-accordion_panel:first');
+                expect(activePanel.hasClass('foo')).toBe(true);
+            });
+
+            it('should not set the panel active class on inactive panels', function() {
+                var inActivePanel = testElement.find('.js-accordion_panel:eq(1)');
+                expect(inActivePanel.hasClass('foo')).toBe(false);
+            });
+        })
 
         it('should set the panel hidden class from the option "panelControlHiddenClass"', function() {
             var control;

@@ -36,6 +36,8 @@
         panelClass: 'js-accordion_panel',
         // Ids for panels should start with the following string
         panelId: 'js-accordion_panel--',
+        // A class applied to the active panel
+        panelActiveClass: 'js-accordion_panel--active',
         // Class to apply to each panel control
         panelControlClass: 'js-accordion_control',
         // A class applied to the active panel control
@@ -260,31 +262,36 @@
     /*
         Public method for opening the panel
     */
-        var activePanelClass = this.options.panelControlActiveClass,
+        var activeControlClass = this.options.panelControlActiveClass,
+            activePanelClass = this.options.panelActiveClass,
             panelId = '#' + $(control).attr('aria-controls');
 
-        // Reset state if another panel is open
+        // If another panel is open
         if ($('> [aria-pressed="true"]', this.element).length !== 0) {
+            // Reset state
             $('> [aria-pressed="true"]', this.element)
                 .attr({
                     'aria-expanded': 'false',
                     'aria-pressed': 'false'
                 })
-                .removeClass(activePanelClass);
+                .removeClass(activeControlClass);
 
             $('> [aria-hidden="false"]', this.element)
                 .attr('aria-hidden', 'true')
-                .hide();
+                .hide()
+                // Remove active class
+                .removeClass(activePanelClass);
         }
 
         // Update state of newly selected panel
         $(panelId, this.element)
             .attr('aria-hidden', 'false')
-            .show();
+            .show()
+            .addClass(activePanelClass);
 
         // Update state of newly selected panel control
         $(control, this.element)
-            .addClass(activePanelClass)
+            .addClass(activeControlClass)
             .attr({
                 'aria-expanded': 'true',
                 'aria-pressed': 'true'
@@ -318,13 +325,16 @@
             return false;
         }
 
-        var activePanelClass = this.options.panelControlActiveClass,
+        var activeControlClass = this.options.panelControlActiveClass,
+            activePanelClass = this.options.panelActiveClass,
             panelId = '#' + $(control).attr('aria-controls');
 
         // Update state of newly selected panel
         $(panelId, this.element)
             .attr('aria-hidden', 'true')
-            .hide();
+            .hide()
+            // Remove active class
+            .removeClass(activePanelClass);
 
         // Update state of newly selected panel control
         $(control, this.element)
@@ -332,7 +342,7 @@
                 'aria-expanded': 'false',
                 'aria-pressed': 'false'
             })
-            .removeClass(activePanelClass);
+            .removeClass(activeControlClass);
     };
 
     AccAccordion.prototype.rebuild = function() {
