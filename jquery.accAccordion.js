@@ -47,7 +47,9 @@
         // Class applied to panel titles. Only used when the activeControlHidden & horizontal options are true
         panelTitleClass: 'js-accordion_panel-title',
         // The width of the panel in % for horizontal accordion
-        panelWidth: 33
+        panelWidth: 33,
+        // Using JS animations to slide open and close panels
+        slideOpenClose: false
     };
 
     function AccAccordion(element, options) {
@@ -261,7 +263,9 @@
         Public method for opening the panel
     */
         var activePanelClass = this.options.panelControlActiveClass,
-            panelId = '#' + $(control).attr('aria-controls');
+            panelId = '#' + $(control).attr('aria-controls'),
+            newPanel,
+            currentPanel;
 
         // Reset state if another panel is open
         if ($('> [aria-pressed="true"]', this.element).length !== 0) {
@@ -272,15 +276,29 @@
                 })
                 .removeClass(activePanelClass);
 
-            $('> [aria-hidden="false"]', this.element)
-                .attr('aria-hidden', 'true')
-                .hide();
+            currentPanel = $('> [aria-hidden="false"]', this.element);
+
+            currentPanel.attr('aria-hidden', 'true');
+
+            // Whether the panel animates
+            if (this.options.slideOpenClose) {
+                currentPanel.slideUp();
+            } else {
+                currentPanel.hide();
+            }
         }
 
         // Update state of newly selected panel
-        $(panelId, this.element)
-            .attr('aria-hidden', 'false')
-            .show();
+        newPanel = $(panelId, this.element);
+
+        newPanel.attr('aria-hidden', 'false');
+
+        // Whether the panel animates
+        if (this.options.slideOpenClose) {
+            newPanel.slideDown();
+        } else {
+            newPanel.show();
+        }
 
         // Update state of newly selected panel control
         $(control, this.element)
@@ -319,12 +337,20 @@
         }
 
         var activePanelClass = this.options.panelControlActiveClass,
-            panelId = '#' + $(control).attr('aria-controls');
+            panelId = '#' + $(control).attr('aria-controls'),
+            newPanel;
 
         // Update state of newly selected panel
-        $(panelId, this.element)
-            .attr('aria-hidden', 'true')
-            .hide();
+        newPanel = $(panelId, this.element);
+
+        newPanel.attr('aria-hidden', 'true');
+
+        // Whether the panel animates
+        if (this.options.slideOpenClose) {
+            newPanel.slideUp();
+        } else {
+            newPanel.hide();
+        }
 
         // Update state of newly selected panel control
         $(control, this.element)
