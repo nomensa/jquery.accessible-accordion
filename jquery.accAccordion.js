@@ -388,16 +388,18 @@
         // Remove any panel titles
         $(this.element).find('.' + this.options.panelTitleClass).remove();
 
+        this.options.callbackDestroy();
+
         // Scroll to panel
         if (this.options.scrollToPanel) {
-            // Clean url
             url = url.substr(0, url.lastIndexOf('#'));
 
-            // Add panel ID to url
-            window.location.href = url;
+            // If the panel has been scrolled to
+            if (url.length !== 0) {
+                // Remove the ID from the url
+                window.location.href = url + '#';
+            }
         }
-
-        this.options.callbackDestroy();
     };
 
 
