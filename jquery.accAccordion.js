@@ -298,6 +298,11 @@
             // Clean url
             url = url.substr(0, url.lastIndexOf('#'));
 
+            // Animate scroll
+            $('html, body').animate({
+                scrollTop: $(panelId).offset().top
+            }, 500);
+
             // Add panel ID to url
             window.location.href = url + panelId;
         }
