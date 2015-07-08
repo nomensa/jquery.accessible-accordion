@@ -49,7 +49,9 @@
         // The width of the panel in % for horizontal accordion
         panelWidth: 33,
         // Using JS animations to slide open and close panels
-        slideOpenClose: false
+        slideOpenClose: false,
+        // Slide animation time
+        slideDuration: 500
     };
 
     function AccAccordion(element, options) {
@@ -282,7 +284,7 @@
 
             // Whether the panel animates
             if (this.options.slideOpenClose) {
-                currentPanel.slideUp();
+                currentPanel.slideUp(this.options.slideDuration);
             } else {
                 currentPanel.hide();
             }
@@ -295,7 +297,7 @@
 
         // Whether the panel animates
         if (this.options.slideOpenClose) {
-            newPanel.slideDown();
+            newPanel.slideDown(this.options.slideDuration);
         } else {
             newPanel.show();
         }
@@ -347,7 +349,7 @@
 
         // Whether the panel animates
         if (this.options.slideOpenClose) {
-            newPanel.slideUp();
+            newPanel.slideUp(this.options.slideDuration);
         } else {
             newPanel.hide();
         }

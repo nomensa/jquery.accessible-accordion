@@ -349,5 +349,35 @@ describe('accessible-accordion', function() {
 
             expect(widthFound).toBe(true);
         });
+
+        describe('"slideOpenClose" option', function() {
+
+            beforeEach(function() {
+                jasmine.clock().install();
+            });
+
+            it('should slide up', function() {
+                var control,
+                    panel;
+
+                testElement.accAccordion({
+                    defaultPanel: 0,
+                    slideOpenClose: true,
+                    slideDuration: 1000
+                });
+
+                control = testElement.find('.js-accordion_control--active');
+                panel = control.next();
+
+                // Give the panel height for this test
+                panel.css('height', '500');
+
+                control.click();
+                jasmine.clock().tick(500);
+
+                // I would expect the height of the panel to be 250pixels at this point, however it is not
+                // It is as though the jQuery method of 'slideUp' does not animate in this linear way by default
+            });
+        });
     });
 });
