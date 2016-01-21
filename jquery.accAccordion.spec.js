@@ -374,9 +374,23 @@ describe('accessible-accordion', function() {
         describe('scrollToPanelSpeed option', function() {
 
             it('should animate to the value passed in from the option', function() {
+                var panelMock,
+                    panelSelector = '.js-accordion_control:eq(1)';
+
+                spyOn(jQuery.fn, 'animate');
+
                 testElement.accAccordion({
+                    activeControlHidden: true,
+                    scrollToPanel: true,
                     scrollToPanelSpeed: '10'
                 });
+
+                panelMock = $(testElement.find(panelSelector));
+
+                // Open the second panel
+                testElement.data('plugin_accAccordion').open(panelMock);
+
+                expect(jQuery.fn.animate).toHaveBeenCalledWith({scrollTop: 0 }, '10');
             });
         });
     });
