@@ -52,7 +52,7 @@
         scrollToPanel: false,
         // Relies on 'scrollToPanel' to be true
         // The animation speed for the 'scrollToPanel' option
-        scrollToPanelSpeed: 500
+        scrollToPanelSpeed: 200
     };
 
     function AccAccordion(element, options) {
