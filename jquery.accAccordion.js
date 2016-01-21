@@ -49,7 +49,10 @@
         // The width of the panel in % for horizontal accordion
         panelWidth: 33,
         // To scroll the viewport onto the active panel
-        scrollToPanel: false
+        scrollToPanel: false,
+        // Relies on 'scrollToPanel' to be true
+        // The animation speed for the 'scrollToPanel' option
+        scrollToPanelSpeed: 500
     };
 
     function AccAccordion(element, options) {
@@ -301,7 +304,7 @@
             // Animate scroll
             $('html, body').animate({
                 scrollTop: $(panelId).offset().top
-            }, 500);
+            }, this.options.scrollToPanelSpeed);
 
             // Add panel ID to url
             window.location.href = url + panelId;

@@ -359,8 +359,15 @@ describe('accessible-accordion', function() {
 
                 // Difficult to check if the viewport has scrolled to the right area in Jasmine
             });
+        });
 
-            it('should animate when it scrolls');
+        describe('scrollToPanelSpeed option', function() {
+
+            it('should animate to the value passed in from the option', function() {
+                testElement.accAccordion({
+                    scrollToPanelSpeed: '10'
+                });
+            });
         });
     });
 });
