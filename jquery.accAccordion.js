@@ -303,7 +303,7 @@
 
             // Animate scroll
             $('html, body').animate({
-                scrollTop: $(panelId).offset().top
+                scrollTop: $(panelId, this.element).offset().top
             }, this.options.scrollToPanelSpeed);
 
             // Add panel ID to url

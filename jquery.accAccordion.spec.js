@@ -353,11 +353,21 @@ describe('accessible-accordion', function() {
         describe('scrollToPanel option', function() {
 
             it('should jump to the section of content', function() {
+                var panelMock,
+                    panelSelector = '.js-accordion_control:eq(1)';
+
                 testElement.accAccordion({
+                    activeControlHidden: true,
                     scrollToPanel: true
                 });
 
-                // Difficult to check if the viewport has scrolled to the right area in Jasmine
+                panelMock = $(testElement.find(panelSelector));
+                panelMock.offset({ top: 500 });
+
+                // Open the second panel
+                testElement.data('plugin_accAccordion').open(panelMock);
+
+                expect(panelMock.offset().top).toBe(0);
             });
         });
 
