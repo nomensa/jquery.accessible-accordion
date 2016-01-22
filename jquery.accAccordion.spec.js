@@ -122,7 +122,23 @@ describe('accessible-accordion', function() {
 
     describe('- calculateWidths method', function() {
 
+        beforeEach(function() {
+            testElement.accAccordion({
+                horizontal: true
+            });
+        });
 
+        it('should apply an equal width to each trigger', function() {
+            var triggers = testElement.find('.js-accordion_control'),
+                panelWidth = testElement.data('plugin_accAccordion').options.panelWidth,
+                expectedTriggerWidth;
+
+            expectedTriggerWidth = (100 - panelWidth) / triggers.length;
+
+            triggers.each(function() {
+                expect($(this).width()).toEqual(expectedTriggerWidth);
+            });
+        });
     });
 
     describe('- calculateHeights method', function() {
