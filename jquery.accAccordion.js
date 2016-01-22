@@ -335,13 +335,6 @@
             .removeClass(activePanelClass);
     };
 
-    AccAccordion.prototype.rebuild = function() {
-    /*
-        Public method for rebuild the plugin and options
-    */
-        return new AccAccordion(this.element, this.options);
-    };
-
     AccAccordion.prototype.destroy = function () {
     /*
         Public method for return the DOM back to its initial state
@@ -351,7 +344,8 @@
         this.element
             .removeAttr('style')
             .removeClass(this.options.containerClass)
-            .removeClass(this.options.containerClassHorizontal);
+            .removeClass(this.options.containerClassHorizontal)
+            .removeData('plugin_' + pluginName);
 
         $('> div', this.element).prev().each(function(index, value) {
             var controlText = $(value).text();
