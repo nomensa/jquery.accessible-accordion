@@ -250,11 +250,11 @@ $(".example-d").accAccordion({
                 (function() {
                     var target = $('.example-e'),
                         buttonContainer = $('<div />'),
-                        buttonRebuild = $('<button class="js-btn">Rebuild</button>'),
+                        buttonRebuild = $('<button class="js-btn">Init</button>'),
                         buttonDestroy = $('<button class="js-btn">Destroy</button>')
                         targetInner = $('.example-f'),
                         buttonContainerInner = $('<div />'),
-                        buttonRebuildInner = $('<button class="js-btn">Rebuild</button>'),
+                        buttonRebuildInner = $('<button class="js-btn">Init</button>'),
                         buttonDestroyInner = $('<button class="js-btn">Destroy</button>');
 
                     target.accAccordion({
@@ -266,7 +266,9 @@ $(".example-d").accAccordion({
                     buttonRebuild.on('click', function(event) {
                         event.preventDefault();
 
-                        target.data('plugin_accAccordion').rebuild();
+                        target.accAccordion({
+                            defaultPanel: 1
+                        });
 
                         $(this).attr('disabled', 'disabled');
                         buttonDestroy.removeAttr('disabled');
@@ -297,7 +299,12 @@ $(".example-d").accAccordion({
                     buttonRebuildInner.on('click', function(event) {
                         event.preventDefault();
 
-                        targetInner.data('plugin_accAccordion').rebuild();
+                        targetInner.accAccordion({
+                            activeControlHidden: true,
+                            defaultPanel: 0,
+                            horizontal: true,
+                            panelWidth: 50
+                        });
 
                         $(this).attr('disabled', 'disabled');
                         buttonDestroyInner.removeAttr('disabled');

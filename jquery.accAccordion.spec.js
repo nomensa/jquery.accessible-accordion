@@ -145,18 +145,6 @@ describe('accessible-accordion', function() {
 
     });
 
-    describe('- rebuild method', function() {
-
-        it('should reinitiate the plugin', function() {
-            var plugin = testElement.accAccordion();
-
-            plugin.data('plugin_accAccordion').destroy();
-            plugin.data('plugin_accAccordion').rebuild();
-
-            expect(plugin === testElement.accAccordion()).toBe(true);
-        });
-    });
-
     describe('- destroy method', function() {
 
     });
