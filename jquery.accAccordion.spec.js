@@ -143,7 +143,16 @@ describe('accessible-accordion', function() {
 
     describe('- calculateHeights method', function() {
 
+        beforeEach(function() {
+            testElement.accAccordion({
+                horizontal: true
+            });
+        });
 
+
+        it('should apply a height to the trigger that is equal to the panel height ', function() {
+            var triggers = testElement.find('.js-accordion_control');
+        });
     });
 
     describe('- toggle method', function() {
