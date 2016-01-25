@@ -143,15 +143,22 @@ describe('accessible-accordion', function() {
 
     describe('- calculateHeights method', function() {
 
-        beforeEach(function() {
-            testElement.accAccordion({
-                horizontal: true
-            });
-        });
-
-
         it('should apply a height to the trigger that is equal to the panel height ', function() {
-            var triggers = testElement.find('.js-accordion_control');
+            var firstTrigger,
+                openPanel;
+
+            testElement.accAccordion({
+                horizontal: true,
+                defaultPanel: 0
+            });
+
+            firstTrigger = testElement.find('.js-accordion_control:eq(0)');
+            openPanel = testElement.find('.js-accordion_panel[aria-hidden="false"]');
+
+            openPanel.css('height', '400');
+            testElement.data('plugin_accAccordion').calculateHeights();
+
+            expect(firstTrigger.attr('style').indexOf("height: 400px")).toBeGreaterThan(0);
         });
     });
 
