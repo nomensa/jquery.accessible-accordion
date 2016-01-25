@@ -193,7 +193,83 @@ describe('accessible-accordion', function() {
 
     describe('- open method', function() {
 
+        it('should reset the ARIA states on closed other triggers', function() {
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
 
+            var trigger1 = testElement.find('.js-accordion_control:eq(0)'),
+                trigger2 = testElement.find('.js-accordion_control:eq(1)'),
+                plugin = testElement.data('plugin_accAccordion');
+
+            plugin.open(trigger2);
+
+            expect(trigger1.attr('aria-pressed')).toBe('false');
+            expect(trigger1.attr('aria-expanded')).toBe('false');
+        });
+
+        it('should update ARIA states on the newly opened trigger', function() {
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
+
+            var trigger = testElement.find('.js-accordion_control:eq(1)'),
+                plugin = testElement.data('plugin_accAccordion');
+
+            plugin.open(trigger);
+
+            expect(trigger.attr('aria-pressed')).toBe('true');
+            expect(trigger.attr('aria-expanded')).toBe('true');
+        });
+
+        describe('horizontal accAccordion', function() {
+
+            describe('- activeControlHidden option', function() {
+
+                it('should reset the hidden control class and tabindex', function() {
+                    var trigger1,
+                        trigger2,
+                        plugin;
+
+                    testElement.accAccordion({
+                        activeControlHidden: true,
+                        defaultPanel: 0,
+                        horizontal: true
+                    });
+
+                    trigger1 = testElement.find('.js-accordion_control:eq(0)');
+                    trigger2 = testElement.find('.js-accordion_control:eq(1)');
+                    plugin = testElement.data('plugin_accAccordion');
+
+                    expect(trigger1.hasClass('js-accordion_control--hidden')).toBe(true);
+                    expect(trigger1.attr('tabindex')).toBe('-1');
+                    plugin.open(trigger2);
+                    expect(trigger1.hasClass('js-accordion_control--hidden')).toBe(false);
+                    expect(trigger1.attr('tabindex')).toBe('0');
+                });
+            });
+
+            it('should call the calculateWidths and calculateHeights methods', function() {
+                var trigger,
+                    plugin;
+
+                testElement.accAccordion({
+                    activeControlHidden: true,
+                    defaultPanel: 0,
+                    horizontal: true
+                });
+
+                plugin = testElement.data('plugin_accAccordion');
+                trigger = testElement.find('.js-accordion_control:eq(0)');
+
+                spyOn(plugin, 'calculateWidths');
+                spyOn(plugin, 'calculateHeights');
+                plugin.open(trigger);
+
+                expect(plugin.calculateWidths).toHaveBeenCalled();
+                expect(plugin.calculateHeights).toHaveBeenCalled();
+            });
+        });
     });
 
     describe('- close method', function() {
