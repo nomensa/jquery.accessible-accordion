@@ -329,6 +329,131 @@ describe('accessible-accordion', function() {
 
     describe('- destroy method', function() {
 
+        it('should remove styles and classes on the original target element', function() {
+            var plugin;
+
+            testElement.accAccordion({
+                containerClass: 'foo'
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+
+            plugin.destroy();
+
+            expect(testElement.hasClass('foo')).toBe(false);
+            expect(testElement.attr('style')).toBe(undefined);
+        });
+
+        describe('if horizontal', function() {
+
+            it('should remove the horizontal class to the original target element', function() {
+                var plugin;
+
+                testElement.accAccordion({
+                    containerClassHorizontal: 'bar',
+                    horizontal: true
+                });
+
+                plugin = testElement.data('plugin_accAccordion');
+
+                plugin.destroy();
+                expect(testElement.hasClass('bar')).toBe(false);
+            });
+        });
+
+        it('should remove applied classes to triggers', function() {
+            var plugin,
+                triggers;
+
+            testElement.accAccordion({
+                panelControlClass: 'foo',
+                panelControlActiveClass: 'bar',
+                panelControlHiddenClass: 'baz'
+            });
+
+            plugin = testElement.data('plugin_accAccordion'),
+            triggers = testElement.find('.js-accordion_panel');
+
+            plugin.destroy();
+
+            triggers.each(function() {
+                var trigger = $(this);
+
+                expect(trigger.hasClass('foo')).toBe(false);
+                expect(trigger.hasClass('bar')).toBe(false);
+                expect(trigger.hasClass('baz')).toBe(false);
+            });
+        });
+
+        it('should reset the trigger markup', function() {
+            var plugin,
+                originalTrigger = testElement.find('h3:eq(0)'),
+                trigger;
+
+            testElement.accAccordion();
+
+            plugin = testElement.data('plugin_accAccordion');
+            plugin.destroy();
+            trigger = testElement.find('h3:eq(0)');
+
+            expect(trigger.get(0) === originalTrigger.get(0)).toBe(true);
+        });
+
+        it('should remove applied classes to panels', function() {
+            var plugin,
+                panels;
+
+            testElement.accAccordion({
+                panelClass: 'foo'
+            });
+
+            plugin = testElement.data('plugin_accAccordion'),
+            panels = testElement.find('.js-accordion_panel');
+
+            plugin.destroy();
+
+            panels.each(function() {
+                var panel = $(this);
+
+                expect(panel.hasClass('foo')).toBe(false);
+            });
+        });
+
+        it('should remove panel titles that have been added', function() {
+            var plugin,
+                panels;
+
+            testElement.accAccordion({
+                panelTitleClass: 'foo'
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            plugin.destroy();
+            panels = testElement.find('div');
+
+            panels.each(function() {
+                var panel = $(this);
+
+                expect(panel.find('.foo').length).toBe(0);
+            });
+        });
+
+        it('should call the destroy callback', function() {
+            var plugin,
+                panels,
+                flag = false;
+
+            testElement.accAccordion({
+                callbackDestroy: function() {
+                    flag = true;
+                }
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            plugin.destroy();
+
+            expect(flag).toBe(true);
+        });
     });
 
     describe('- plugin options', function() {
