@@ -122,43 +122,338 @@ describe('accessible-accordion', function() {
 
     describe('- calculateWidths method', function() {
 
+        beforeEach(function() {
+            testElement.accAccordion({
+                horizontal: true
+            });
+        });
 
+        it('should apply an equal width to each trigger', function() {
+            var triggers = testElement.find('.js-accordion_control'),
+                panelWidth = testElement.data('plugin_accAccordion').options.panelWidth,
+                expectedTriggerWidth;
+
+            expectedTriggerWidth = (100 - panelWidth) / triggers.length;
+
+            triggers.each(function() {
+                expect($(this).width()).toEqual(expectedTriggerWidth);
+            });
+        });
     });
 
     describe('- calculateHeights method', function() {
 
+        it('should apply a height to the trigger that is equal to the panel height ', function() {
+            var firstTrigger,
+                openPanel;
 
+            testElement.accAccordion({
+                horizontal: true,
+                defaultPanel: 0
+            });
+
+            firstTrigger = testElement.find('.js-accordion_control:eq(0)');
+            openPanel = testElement.find('.js-accordion_panel[aria-hidden="false"]');
+
+            openPanel.css('height', '400');
+            testElement.data('plugin_accAccordion').calculateHeights();
+
+            expect(firstTrigger.attr('style').indexOf('height: 400px')).toBeGreaterThan(-1);
+        });
     });
 
     describe('- toggle method', function() {
 
+        beforeEach(function() {
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
+        })
 
+        it('should call the open method', function() {
+            var secondTrigger = testElement.find('.js-accordion_control:eq(1)'),
+                plugin = testElement.data('plugin_accAccordion')
+
+            spyOn(plugin, 'open');
+            plugin.toggle(secondTrigger);
+
+            expect(plugin.open).toHaveBeenCalled();
+        });
+
+        it('should call the close method', function() {
+            var firstTrigger = testElement.find('.js-accordion_control:eq(0)'),
+                plugin = testElement.data('plugin_accAccordion')
+
+            spyOn(plugin, 'close');
+            plugin.toggle(firstTrigger);
+
+            expect(plugin.close).toHaveBeenCalled();
+        });
     });
 
     describe('- open method', function() {
 
+        it('should reset the ARIA states on closed other triggers', function() {
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
 
+            var trigger1 = testElement.find('.js-accordion_control:eq(0)'),
+                trigger2 = testElement.find('.js-accordion_control:eq(1)'),
+                plugin = testElement.data('plugin_accAccordion');
+
+            plugin.open(trigger2);
+
+            expect(trigger1.attr('aria-pressed')).toBe('false');
+            expect(trigger1.attr('aria-expanded')).toBe('false');
+        });
+
+        it('should update ARIA states on the newly opened trigger', function() {
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
+
+            var trigger = testElement.find('.js-accordion_control:eq(1)'),
+                plugin = testElement.data('plugin_accAccordion');
+
+            plugin.open(trigger);
+
+            expect(trigger.attr('aria-pressed')).toBe('true');
+            expect(trigger.attr('aria-expanded')).toBe('true');
+        });
+
+        describe('horizontal accAccordion', function() {
+
+            describe('- activeControlHidden option', function() {
+
+                it('should reset the hidden control class and tabindex', function() {
+                    var trigger1,
+                        trigger2,
+                        plugin;
+
+                    testElement.accAccordion({
+                        activeControlHidden: true,
+                        defaultPanel: 0,
+                        horizontal: true
+                    });
+
+                    trigger1 = testElement.find('.js-accordion_control:eq(0)');
+                    trigger2 = testElement.find('.js-accordion_control:eq(1)');
+                    plugin = testElement.data('plugin_accAccordion');
+
+                    expect(trigger1.hasClass('js-accordion_control--hidden')).toBe(true);
+                    expect(trigger1.attr('tabindex')).toBe('-1');
+                    plugin.open(trigger2);
+                    expect(trigger1.hasClass('js-accordion_control--hidden')).toBe(false);
+                    expect(trigger1.attr('tabindex')).toBe('0');
+                });
+            });
+
+            it('should call the calculateWidths and calculateHeights methods', function() {
+                var trigger,
+                    plugin;
+
+                testElement.accAccordion({
+                    activeControlHidden: true,
+                    defaultPanel: 0,
+                    horizontal: true
+                });
+
+                plugin = testElement.data('plugin_accAccordion');
+                trigger = testElement.find('.js-accordion_control:eq(0)');
+
+                spyOn(plugin, 'calculateWidths');
+                spyOn(plugin, 'calculateHeights');
+                plugin.open(trigger);
+
+                expect(plugin.calculateWidths).toHaveBeenCalled();
+                expect(plugin.calculateHeights).toHaveBeenCalled();
+            });
+        });
     });
 
     describe('- close method', function() {
 
+        it('should not action if using activeControlHidden option', function () {
+            var trigger,
+                plugin;
 
-    });
+            testElement.accAccordion({
+                activeControlHidden: true,
+                defaultPanel: 0
+            });
 
-    describe('- rebuild method', function() {
+            plugin = testElement.data('plugin_accAccordion');
+            trigger = testElement.find('.js-accordion_control:eq(0)');
 
-        it('should reinitiate the plugin', function() {
-            var plugin = testElement.accAccordion();
+            plugin.close(trigger);
 
-            plugin.data('plugin_accAccordion').destroy();
-            plugin.data('plugin_accAccordion').rebuild();
+            expect(trigger.attr('aria-expanded')).toBe('true');
+        });
 
-            expect(plugin === testElement.accAccordion()).toBe(true);
+        it('should hide the panel', function () {
+            var trigger,
+                plugin,
+                panel;
+
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            trigger = testElement.find('.js-accordion_control:eq(0)');
+            panel = trigger.next();
+
+            plugin.close(trigger);
+
+            expect(panel.attr('aria-hidden')).toBe('true');
+            expect(panel.attr('style').indexOf('display: none;')).toBeGreaterThan(-1);
+        });
+
+        it('should update ARIA on the control', function () {
+            var trigger,
+                plugin;
+
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            trigger = testElement.find('.js-accordion_control:eq(0)');
+
+            plugin.close(trigger);
+            expect(trigger.attr('aria-expanded')).toBe('false');
+            expect(trigger.attr('aria-pressed')).toBe('false');
         });
     });
 
     describe('- destroy method', function() {
 
+        it('should remove styles and classes on the original target element', function() {
+            var plugin;
+
+            testElement.accAccordion({
+                containerClass: 'foo'
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+
+            plugin.destroy();
+
+            expect(testElement.hasClass('foo')).toBe(false);
+            expect(testElement.attr('style')).toBe(undefined);
+        });
+
+        describe('if horizontal', function() {
+
+            it('should remove the horizontal class to the original target element', function() {
+                var plugin;
+
+                testElement.accAccordion({
+                    containerClassHorizontal: 'bar',
+                    horizontal: true
+                });
+
+                plugin = testElement.data('plugin_accAccordion');
+
+                plugin.destroy();
+                expect(testElement.hasClass('bar')).toBe(false);
+            });
+        });
+
+        it('should remove applied classes to triggers', function() {
+            var plugin,
+                triggers;
+
+            testElement.accAccordion({
+                panelControlClass: 'foo',
+                panelControlActiveClass: 'bar',
+                panelControlHiddenClass: 'baz'
+            });
+
+            plugin = testElement.data('plugin_accAccordion'),
+            triggers = testElement.find('.js-accordion_panel');
+
+            plugin.destroy();
+
+            triggers.each(function() {
+                var trigger = $(this);
+
+                expect(trigger.hasClass('foo')).toBe(false);
+                expect(trigger.hasClass('bar')).toBe(false);
+                expect(trigger.hasClass('baz')).toBe(false);
+            });
+        });
+
+        it('should reset the trigger markup', function() {
+            var plugin,
+                originalTrigger = testElement.find('h3:eq(0)'),
+                trigger;
+
+            testElement.accAccordion();
+
+            plugin = testElement.data('plugin_accAccordion');
+            plugin.destroy();
+            trigger = testElement.find('h3:eq(0)');
+
+            expect(trigger.get(0) === originalTrigger.get(0)).toBe(true);
+        });
+
+        it('should remove applied classes to panels', function() {
+            var plugin,
+                panels;
+
+            testElement.accAccordion({
+                panelClass: 'foo'
+            });
+
+            plugin = testElement.data('plugin_accAccordion'),
+            panels = testElement.find('.js-accordion_panel');
+
+            plugin.destroy();
+
+            panels.each(function() {
+                var panel = $(this);
+
+                expect(panel.hasClass('foo')).toBe(false);
+            });
+        });
+
+        it('should remove panel titles that have been added', function() {
+            var plugin,
+                panels;
+
+            testElement.accAccordion({
+                panelTitleClass: 'foo'
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            plugin.destroy();
+            panels = testElement.find('div');
+
+            panels.each(function() {
+                var panel = $(this);
+
+                expect(panel.find('.foo').length).toBe(0);
+            });
+        });
+
+        it('should call the destroy callback', function() {
+            var plugin,
+                panels,
+                flag = false;
+
+            testElement.accAccordion({
+                callbackDestroy: function() {
+                    flag = true;
+                }
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            plugin.destroy();
+
+            expect(flag).toBe(true);
+        });
     });
 
     describe('- plugin options', function() {

@@ -335,13 +335,6 @@
             .removeClass(activePanelClass);
     };
 
-    AccAccordion.prototype.rebuild = function() {
-    /*
-        Public method for rebuild the plugin and options
-    */
-        return new AccAccordion(this.element, this.options);
-    };
-
     AccAccordion.prototype.destroy = function () {
     /*
         Public method for return the DOM back to its initial state
