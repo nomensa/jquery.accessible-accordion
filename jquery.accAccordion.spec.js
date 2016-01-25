@@ -164,7 +164,31 @@ describe('accessible-accordion', function() {
 
     describe('- toggle method', function() {
 
+        beforeEach(function() {
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
+        })
 
+        it('should call the open method', function() {
+            var secondTrigger = testElement.find('.js-accordion_control:eq(1)'),
+                plugin = testElement.data('plugin_accAccordion')
+
+            spyOn(plugin, 'open');
+            plugin.toggle(secondTrigger);
+
+            expect(plugin.open).toHaveBeenCalled();
+        });
+
+        it('should call the close method', function() {
+            var firstTrigger = testElement.find('.js-accordion_control:eq(0)'),
+                plugin = testElement.data('plugin_accAccordion')
+
+            spyOn(plugin, 'close');
+            plugin.toggle(firstTrigger);
+
+            expect(plugin.close).toHaveBeenCalled();
+        });
     });
 
     describe('- open method', function() {
