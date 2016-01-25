@@ -158,7 +158,7 @@ describe('accessible-accordion', function() {
             openPanel.css('height', '400');
             testElement.data('plugin_accAccordion').calculateHeights();
 
-            expect(firstTrigger.attr('style').indexOf("height: 400px")).toBeGreaterThan(0);
+            expect(firstTrigger.attr('style').indexOf('height: 400px')).toBeGreaterThan(-1);
         });
     });
 
@@ -274,7 +274,57 @@ describe('accessible-accordion', function() {
 
     describe('- close method', function() {
 
+        it('should not action if using activeControlHidden option', function () {
+            var trigger,
+                plugin;
 
+            testElement.accAccordion({
+                activeControlHidden: true,
+                defaultPanel: 0
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            trigger = testElement.find('.js-accordion_control:eq(0)');
+
+            plugin.close(trigger);
+
+            expect(trigger.attr('aria-expanded')).toBe('true');
+        });
+
+        it('should hide the panel', function () {
+            var trigger,
+                plugin,
+                panel;
+
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            trigger = testElement.find('.js-accordion_control:eq(0)');
+            panel = trigger.next();
+
+            plugin.close(trigger);
+
+            expect(panel.attr('aria-hidden')).toBe('true');
+            expect(panel.attr('style').indexOf('display: none;')).toBeGreaterThan(-1);
+        });
+
+        it('should update ARIA on the control', function () {
+            var trigger,
+                plugin;
+
+            testElement.accAccordion({
+                defaultPanel: 0
+            });
+
+            plugin = testElement.data('plugin_accAccordion');
+            trigger = testElement.find('.js-accordion_control:eq(0)');
+
+            plugin.close(trigger);
+            expect(trigger.attr('aria-expanded')).toBe('false');
+            expect(trigger.attr('aria-pressed')).toBe('false');
+        });
     });
 
     describe('- rebuild method', function() {
